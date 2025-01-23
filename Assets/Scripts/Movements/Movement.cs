@@ -1,0 +1,111 @@
+﻿using UnityEngine;
+
+namespace Movements
+{
+    public class Movement : MonoBehaviour
+    {
+        [SerializeField] protected Rigidbody _rigidbody;
+        [SerializeField] protected Animator _animator;
+        [SerializeField] protected float _speed;
+        [SerializeField] protected float _idleThreshold;
+        [SerializeField] protected float _stopDistance = 0.5f;
+
+        protected float _idleTimer;
+        protected bool _isFunnyIdle;
+        protected Vector3 _moveDirection;
+        protected Vector3 _targetPosition;
+
+        private void OnValidate()
+        {
+            Speed = _speed;
+        }
+
+        public float Speed
+        {
+            get => _speed;
+            set
+            {
+                _speed = value;
+                _animator.SetFloat("RunSpeed", _speed);
+            }
+        }
+
+        private void Start()
+        {
+            _animator.SetTrigger("Spawn");
+            Speed = _speed;
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (_moveDirection != Vector3.zero)
+            {
+                Vector3 newPosition = _rigidbody.position + _moveDirection * (Speed * Time.fixedDeltaTime);
+                _rigidbody.MovePosition(newPosition);
+            }
+        }
+
+        public void Update()
+        {
+            bool isMoving = _moveDirection != Vector3.zero;
+            _animator.SetBool("IsRunning", isMoving);
+
+            if (isMoving)
+            {
+                _idleTimer = 0f;
+                _isFunnyIdle = false;
+                _animator.SetBool("FunnyIdle", _isFunnyIdle);
+
+                Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
+                _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation, targetRotation, Time.deltaTime * 10f);
+            }
+            else
+            {
+                _idleTimer += Time.deltaTime;
+                if (_idleTimer >= _idleThreshold)
+                {
+                    _isFunnyIdle = !_isFunnyIdle;
+                    _animator.SetBool("FunnyIdle", _isFunnyIdle);
+                    _idleTimer = 0;
+                }
+            }
+
+            if (_targetPosition != Vector3.zero)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
+                if (distanceToTarget <= _stopDistance)
+                {
+                    StopMoving();
+                }
+            }
+        }
+
+        public void GoToPoint(Vector3 point)
+        {
+            _targetPosition = point;
+            _moveDirection = (point - transform.position).normalized;
+        }
+
+        public void GoToEntity(Transform entity)
+        {
+            GoToPoint(entity.position);
+        }
+
+        public bool IsMoving()
+        {
+            return _rigidbody.linearVelocity.magnitude > 0.01f;
+        }
+
+        public void StopMoving()
+        {
+            _targetPosition = Vector3.zero;
+            _moveDirection = Vector3.zero;
+            _animator.SetBool("IsRunning", false);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            StopMoving();
+        }
+    }
+}

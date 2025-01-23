@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f390d8e7a740c590e004e4c6a79810, type: 3}
+  m_Name: RoomConfigs
+  m_EditorClassIdentifier: 
+  _doorPrefab: {fileID: 4079752658157406776, guid: da45fd7d00a32b443850530fef190113, type: 3}
+  _wallPrefab: {fileID: 6732122429525588525, guid: a37e5d81f43e9a642bca7c08917c8e4e, type: 3}
+  _floorDecorPrefabs:
+  - {fileID: 919132149155446097, guid: 4522224884e00a14587fdc7a8fb49a11, type: 3}
+  - {fileID: 919132149155446097, guid: 2d8ebb7a9ff08ec4da9d60ada0830d91, type: 3}
+  - {fileID: 919132149155446097, guid: 2a3c48be7f5295f45bda784569ad34ab, type: 3}
+  - {fileID: 919132149155446097, guid: ae56b6320ab29b14eabdde6134f6746b, type: 3}
+  - {fileID: 919132149155446097, guid: 3af33228e815e6743a0554bbd40eaa8c, type: 3}
+  - {fileID: 919132149155446097, guid: f388a9a2a25fa5e4c83e735be0e1b01a, type: 3}
