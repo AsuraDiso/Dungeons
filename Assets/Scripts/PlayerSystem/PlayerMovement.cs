@@ -1,15 +1,15 @@
-﻿using Player;
+﻿using Movements;
 using UnityEngine;
 
-namespace Movements
+namespace PlayerSystem
 {
     public class PlayerMovement : Movement
     {
-        [SerializeField] private PlayerController _controller;
+        [SerializeField] private Player _player;
 
         protected override void FixedUpdate()
         {
-            _moveDirection = _controller.MovementDirection;
+            _moveDirection = _player.Controller.MovementDirection;
             base.FixedUpdate(); 
         }
     }

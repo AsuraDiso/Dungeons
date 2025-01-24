@@ -14,10 +14,6 @@ namespace Enemies
         {
             _leaderTransform = leaderTransform;
         }
-        public void SetPlayer(Health player)
-        {
-            Player = player;
-        }
         private void Start()
         {
             _wanderAI = new WanderAI(transform, _movement, 5f, 3f);

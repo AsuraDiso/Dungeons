@@ -1,18 +1,19 @@
 using Combats;
 using Movements;
+using PlayerSystem;
 using UnityEngine;
 
 namespace Enemies.Behaviours
 {
     public class ChaseAndAttackAI
     {
-        private Health _player;
+        private Player _player;
         private Transform _ownerTransform;
         private Combat _combat;
         private Movement _movement;
         private float _followRange;
 
-        public ChaseAndAttackAI(Transform ownerTransform, Health player, Combat combat, Movement movement, float followRange)
+        public ChaseAndAttackAI(Transform ownerTransform, Player player, Combat combat, Movement movement, float followRange)
         {
             _ownerTransform = ownerTransform;
             _player = player;
@@ -24,7 +25,7 @@ namespace Enemies.Behaviours
         public bool Update()
         {
             if (!_player || !_ownerTransform) return false;
-            if (_player.IsDead()) return false;
+            if (_player.Health.IsDead()) return false;
             
             float distanceToPlayer = Vector3.Distance(_ownerTransform.position, _player.transform.position);
             if (distanceToPlayer < _followRange)

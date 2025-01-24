@@ -1,13 +1,14 @@
 using Combats;
 using InventorySystem;
 using Movements;
+using PlayerSystem;
 using UnityEngine;
 
 namespace Enemies
 {
     public abstract class MobAI : MonoBehaviour
     {
-        private Health _player;
+        private Player _player;
         [SerializeField] protected Health _health;
         [SerializeField] protected Combat _combat;
         [SerializeField] protected Movement _movement;
@@ -18,7 +19,7 @@ namespace Enemies
             return _health.IsDead();
         }
 
-        public Health Player
+        public Player Player
         {
             get => _player;
             set => _player = value;

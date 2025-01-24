@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Enemies.Behaviours
 {
     public class FollowerAI
-    
     {
         private Transform _ownerTransform;
         private Transform _leaderTransform;

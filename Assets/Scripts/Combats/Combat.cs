@@ -86,10 +86,6 @@ namespace Combats
             _animator.SetBool("IsAttacking", false);
         }
 
-        private async Awaitable WaitForLevelManagerInitialization()
-        {
-            while (LevelManager.Instance == null) await Awaitable.NextFrameAsync();
-        }
         protected IEnumerator AttackCoolDown()
         {
             yield return new WaitForSeconds(GetCoolDown());

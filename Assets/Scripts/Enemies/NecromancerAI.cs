@@ -36,7 +36,7 @@ namespace Enemies
                 _minions.Add(minion);
                 var minionAI = minion.GetComponent<MinionAI>();
                 minionAI.SetLeader(transform);
-                minionAI.SetPlayer(Player);
+                minionAI.Player = Player;
             }
         }
         private void Update()

@@ -1,12 +1,13 @@
 using Combats;
 using Movements;
+using PlayerSystem;
 using UnityEngine;
 
 namespace Enemies.Behaviours
 {
     public class ChaseAndAttackAndAvoidAI
     {
-        private Health _player;
+        private Player _player;
         private Transform _ownerTransform;
         private Combat _combat;
         private Movement _movement;
@@ -18,7 +19,7 @@ namespace Enemies.Behaviours
         private float _stunDuration = 1.0f; 
         private float _stunTimer;
 
-        public ChaseAndAttackAndAvoidAI(Transform ownerTransform, Health player, Combat combat, Movement movement, float followRange)
+        public ChaseAndAttackAndAvoidAI(Transform ownerTransform, Player player, Combat combat, Movement movement, float followRange)
         {
             _ownerTransform = ownerTransform;
             _player = player;
@@ -30,7 +31,7 @@ namespace Enemies.Behaviours
         public bool Update()
         {
             if (!_player || !_ownerTransform) return false;
-            if (_player.IsDead()) return false;
+            if (_player.Health.IsDead()) return false;
 
             if (_isAboutToAvoid)
             {
