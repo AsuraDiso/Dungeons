@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &72937800
+--- !u!1 &245297939
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,83 +127,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 72937802}
-  - component: {fileID: 72937803}
+  - component: {fileID: 245297941}
+  - component: {fileID: 245297940}
   m_Layer: 0
-  m_Name: RoomSpawner
+  m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &72937802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72937800}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &72937803
+--- !u!114 &245297940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72937800}
+  m_GameObject: {fileID: 245297939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc438dc7d2e82b41ab6807e8ef42203, type: 3}
+  m_Script: {fileID: 11500000, guid: c34af5a0fcefd40478e3d83bc4fddab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomPrefab: {fileID: 5737223688767094161, guid: f66052243a72d4542af668600ca29eb4, type: 3}
---- !u!1 &217094517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217094519}
-  - component: {fileID: 217094518}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &217094518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217094517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9f05b5c1ec98744962b36f9740ce1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _roomSpawner: {fileID: 72937803}
-  _playerPrefab: {fileID: 5807539709059669573, guid: 08257d72a843dbe40b9ac951bbbb2823, type: 3}
-  _currentFloor: 1
-  _seed: 
---- !u!4 &217094519
+  _room: {fileID: 5737223688767094161, guid: f66052243a72d4542af668600ca29eb4, type: 3}
+  _playerPrefab: {fileID: 7899663047054870866, guid: 08257d72a843dbe40b9ac951bbbb2823, type: 3}
+--- !u!4 &245297941
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217094517}
+  m_GameObject: {fileID: 245297939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -519,73 +472,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1421198629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1421198631}
-  - component: {fileID: 1421198630}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1421198630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421198629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5463fce097d6a949b1a9362bbeb4311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _floorPresets:
-  - floorName: Level1
-    minDifficulty: 0
-    maxDifficulty: 0
-    mobs:
-    - {fileID: 5797060674136976938, guid: 0d8c26171dfc96248bc1091e316473a6, type: 3}
-    - {fileID: 1482341451323584799, guid: 58c8280dd61826f4a884f59593f546c0, type: 3}
-    - {fileID: 5223893282433743711, guid: b9464b659bd5b2547b2cbfd3605abb17, type: 3}
-    rewards: []
-    bosses:
-    - {fileID: 113827804507865902, guid: a92049d3b366d164fbad44e140d80f75, type: 3}
-  - floorName: Level2
-    minDifficulty: 0
-    maxDifficulty: 0
-    mobs: []
-    rewards: []
-    bosses: []
-  - floorName: Level3
-    minDifficulty: 0
-    maxDifficulty: 0
-    mobs: []
-    rewards: []
-    bosses: []
---- !u!4 &1421198631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421198629}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -593,6 +479,4 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 72937802}
-  - {fileID: 1421198631}
-  - {fileID: 217094519}
+  - {fileID: 245297941}

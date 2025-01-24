@@ -5,19 +5,28 @@ using Random = UnityEngine.Random;
 
 namespace Rooms
 {
-    public class RoomDecorationsFiller : IRoomFiller
+    public class RoomFloorFiller : IRoomFiller
     {
         public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
-            var amount = Random.Range(1, 5);
-
-            for (int i = 0; i < amount; i++)
+            var floor = new GameObject("Floor");
+            floor.transform.SetPositionAndRotation(room.transform.position, Quaternion.identity);
+            floor.transform.SetParent(room.transform);
+            
+            var tileScale = 2f;
+            int floorDepth = 12;
+            int floorLength = 20;
+            for (int i = 0; i < floorLength*.5f; i++)
             {
-                var deco = roomConfigs.FloorDecorations[Random.Range(1, roomConfigs.FloorDecorations.Count)];
-                var decoPrefab = GameObject.Instantiate(deco, room.transform, true);
-                var position = new Vector3(Random.Range(-5f, 5f), -.005f, Random.Range(-3f, 3f));
-                decoPrefab.transform.SetPositionAndRotation(room.transform.position+position, Quaternion.Euler(-90, 0, Random.Range(0, 360)));
-                decoPrefab.transform.localScale = new Vector3(1, 1, 1);
+                for (int j = 0; j < floorDepth*.5f; j++)
+                {
+                    var position = new Vector3(i * tileScale - floorLength*.5f + tileScale*.5f, 0, j * tileScale - floorDepth*.5f + tileScale*.5f);
+                    var floorPrefab = GameObject.Instantiate(
+                        roomConfigs.FloorTilePrefabs[Random.Range(0, roomConfigs.FloorTilePrefabs.Count)],
+                        floor.transform);
+                    floorPrefab.transform.SetPositionAndRotation(floor.transform.position + position,
+                        floor.transform.rotation);
+                }
             }
         }
 

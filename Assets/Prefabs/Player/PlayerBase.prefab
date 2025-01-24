@@ -1008,7 +1008,7 @@ MonoBehaviour:
   _speed: 5
   _idleThreshold: 10
   _stopDistance: 0.5
-  _player: {fileID: 0}
+  _player: {fileID: 1583400798419644612}
 --- !u!114 &1778561471944027941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   _animator: {fileID: 7075588768701104842}
   _rigidbody: {fileID: 3317339300484109097}
   _collider: {fileID: 192788975674906479}
-  _player: {fileID: 0}
+  _player: {fileID: 1583400798419644612}
 --- !u!114 &1436363290772880338
 MonoBehaviour:
   m_ObjectHideFlags: 0

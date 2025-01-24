@@ -5,7 +5,7 @@ namespace Doors
 {
     public class Door : MonoBehaviour
     {   
-        [SerializeField] private MeshFilter meshFilter;
+        [SerializeField] private GameObject _door;
         private Vector2 _direction;
         private Room _connectedRoom;
         public Room ConnectedRoom { get; set; }  

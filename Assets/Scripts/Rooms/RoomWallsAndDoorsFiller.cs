@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rooms
 {
-    public class RoomWallsAndDoorFiller : IRoomFiller
+    public class RoomWallsAndDoorsFiller : IRoomFiller
     {
         public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
@@ -71,8 +71,8 @@ namespace Rooms
             if (Mathf.Approximately(relativePosition.x, -1))
                 return Quaternion.Euler(0, -90, 0);
             if (Mathf.Approximately(relativePosition.y, 1))
-                return Quaternion.Euler(0, 0, 0);
-            return Quaternion.Euler(0, 180, 0);
+                return Quaternion.Euler(0, 180, 0);
+            return Quaternion.Euler(0, 0, 0);
         }
     }
 }

@@ -42,10 +42,11 @@ namespace Rooms
             Position = roomData.Position;
             name = $"Room: {Type}, ({Position.x},{Position.y})";
 
-            _fillers.Add(new RoomDoorsFiller());
+            _fillers.Add(new RoomWallsAndDoorsFiller());
             _fillers.Add(new RoomDecorationsFiller());
             _fillers.Add(new RoomLightningFiller());
-
+            _fillers.Add(new RoomFloorFiller());
+            
             if (Type == RoomType.Regular)
             {
                 _fillers.Add(new RoomMobsFiller());

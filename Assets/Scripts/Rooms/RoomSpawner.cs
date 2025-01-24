@@ -4,17 +4,21 @@ using UnityEngine;
 
 namespace Rooms
 {
-    public class RoomSpawner : MonoBehaviour
+    public class RoomSpawner
     {
-        [SerializeField] private Room _roomPrefab;
+        private Room _roomPrefab;
         private Dictionary<Vector2, Room> _rooms = new();
-        private MapGenerator mapGenerator = new();
+        private MapGenerator _mapGenerator;
 
-        public void GenerateMap(string seed = null)
+        public RoomSpawner(MapGenerator mapGen, Room roomPrefab)
         {
-            mapGenerator.SetSeed(seed);
-            mapGenerator.Start();
-            List<RoomData> rooms = mapGenerator.GetRoomData();
+            _mapGenerator = mapGen;
+            _roomPrefab = roomPrefab;
+        }
+
+        public void SpawnRooms()
+        {
+            List<RoomData> rooms = _mapGenerator.GetRoomData();
 
             foreach (var roomData in rooms)
             {
@@ -27,7 +31,7 @@ namespace Rooms
         private void InstantiateRoom(RoomData roomData)
         {
             var roomPosition = new Vector3(roomData.Position.x * RoomConstants.RoomWidth, 0, roomData.Position.y * RoomConstants.RoomDepth);
-            var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
+            var room = GameObject.Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
             room.SetRoomSpawner(this);
             room.Instantiate(roomData);
             _rooms.Add(roomData.Position, room);
