@@ -1,16 +1,17 @@
-using Infrastructure;
+using Dungeons.Infrastructure;
 
-namespace Services
+namespace Dungeons.Services
 {
     public class LevelSystem
     {
         private readonly ConfigService _configs;
-        public LevelPreset CurrentLevelPreset { get; private set; }
 
         public LevelSystem(LevelPreset levelPreset)
         {
             _configs = Locator<ConfigService>.Instance;
             CurrentLevelPreset = levelPreset;
         }
+
+        public LevelPreset CurrentLevelPreset { get; private set; }
     }
 }

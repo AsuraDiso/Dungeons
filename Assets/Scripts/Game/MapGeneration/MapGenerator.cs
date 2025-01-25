@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace MapGeneration
+namespace Dungeons.Game.MapGeneration
 {
     public enum RoomType
     {
@@ -24,18 +24,18 @@ namespace MapGeneration
 
     public class MapGenerator
     {
-        private bool _started;
-        private List<RoomData> _rooms = new();
-        private int[] _floorPlan;
-        private int _floorPlanCount;
-        private Queue<int> _cellQueue = new();
-        private List<int> _endRooms = new();
         private int _bossl;
+        private readonly Queue<int> _cellQueue = new();
+        private readonly List<int> _endRooms = new();
+        private readonly int[] _floorPlan;
+        private int _floorPlanCount;
+        private readonly int _mapHeight;
 
-        private int _mapWidth;
-        private int _mapHeight;
-        private int _minRooms;
-        private int _maxRooms;
+        private readonly int _mapWidth;
+        private readonly int _maxRooms;
+        private readonly int _minRooms;
+        private readonly List<RoomData> _rooms = new();
+        private bool _started;
 
         public MapGenerator(int mapWidth = 10, int mapHeight = 9, int minRooms = 7, int maxRooms = 15)
         {

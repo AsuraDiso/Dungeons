@@ -1,14 +1,14 @@
 using System.Collections;
-using InventorySystem;
-using Items;
+using Dungeons.Game.InventorySystem;
+using Dungeons.Game.Items;
 using UnityEngine;
 
-namespace Combats
+namespace Dungeons.Game.Combats
 {
     public class Combat : MonoBehaviour
     {
         [SerializeField] protected Inventory _inventory;
-        [SerializeField] protected Health _health;
+        [SerializeField] protected Health.Health _health;
         [SerializeField] protected Animator _animator;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected CapsuleCollider _collider;
@@ -25,6 +25,20 @@ namespace Combats
                     Quaternion.LookRotation(Target.position - transform.position),
                     Time.fixedDeltaTime * 10f
                 );
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            var attackRange = GetAttackRange();
+            var attackAngle = 120f;
+
+            var leftBoundary = Quaternion.Euler(0, -attackAngle / 2f, 0) * transform.forward * attackRange;
+            var rightBoundary = Quaternion.Euler(0, attackAngle / 2f, 0) * transform.forward * attackRange;
+
+            Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
+            Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
+            Gizmos.DrawWireSphere(transform.position, GetAttackRange());
         }
 
         public bool TryAttack(Vector3 direction)
@@ -62,7 +76,7 @@ namespace Combats
 
                 foreach (var target in hitTargets)
                 {
-                    var targetHealth = target.GetComponentInParent<Health>();
+                    var targetHealth = target.GetComponentInParent<Health.Health>();
                     if (targetHealth && target.gameObject != gameObject)
                     {
                         var toTarget = target.transform.position - transform.position;
@@ -120,20 +134,6 @@ namespace Combats
         {
             _health.DoDelta(damage);
             _animator.SetTrigger("Hit");
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            var attackRange = GetAttackRange();
-            var attackAngle = 120f;
-
-            var leftBoundary = Quaternion.Euler(0, -attackAngle / 2f, 0) * transform.forward * attackRange;
-            var rightBoundary = Quaternion.Euler(0, attackAngle / 2f, 0) * transform.forward * attackRange;
-
-            Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
-            Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
-            Gizmos.DrawWireSphere(transform.position, GetAttackRange());
         }
     }
 }

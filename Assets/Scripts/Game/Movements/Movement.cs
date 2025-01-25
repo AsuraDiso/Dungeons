@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Movements
+namespace Dungeons.Game.Movements
 {
     public class Movement : MonoBehaviour
     {
@@ -14,11 +14,6 @@ namespace Movements
         protected bool _isFunnyIdle;
         protected Vector3 _moveDirection;
         protected Vector3 _targetPosition;
-
-        private void OnValidate()
-        {
-            Speed = _speed;
-        }
 
         public float Speed
         {
@@ -34,15 +29,6 @@ namespace Movements
         {
             _animator.SetTrigger("Spawn");
             Speed = _speed;
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            if (_moveDirection != Vector3.zero)
-            {
-                var newPosition = _rigidbody.position + _moveDirection * (Speed * Time.fixedDeltaTime);
-                _rigidbody.MovePosition(newPosition);
-            }
         }
 
         public void Update()
@@ -77,6 +63,25 @@ namespace Movements
             }
         }
 
+        protected virtual void FixedUpdate()
+        {
+            if (_moveDirection != Vector3.zero)
+            {
+                var newPosition = _rigidbody.position + _moveDirection * (Speed * Time.fixedDeltaTime);
+                _rigidbody.MovePosition(newPosition);
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            StopMoving();
+        }
+
+        private void OnValidate()
+        {
+            Speed = _speed;
+        }
+
         public void GoToPoint(Vector3 point)
         {
             _targetPosition = point;
@@ -98,11 +103,6 @@ namespace Movements
             _targetPosition = Vector3.zero;
             _moveDirection = Vector3.zero;
             _animator.SetBool("IsRunning", false);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            StopMoving();
         }
     }
 }

@@ -1,7 +1,6 @@
-using Rooms;
 using UnityEngine;
 
-namespace Doors
+namespace Dungeons.Game.Doors
 {
     public class DoorTrigger : MonoBehaviour
     {

@@ -1,35 +1,40 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace Dungeons.Game.Health
 {
-    public event Action OnDeath, OnRevive;
-    [SerializeField] private float _currentHealth;
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private Animator _animator;
-
-    public void DoDelta(float val)
+    public class Health : MonoBehaviour
     {
-        _currentHealth += val;
+        public event Action Death;
+        public event Action Revive;
+        
+        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _maxHealth;
+        [SerializeField] private Animator _animator;
 
-        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        public void DoDelta(float val)
+        {
+            _currentHealth += val;
 
-        if (_currentHealth <= 0) OnDeath?.Invoke();
-    }
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
-    public bool IsDead()
-    {
-        return _currentHealth <= 0;
-    }
+            if (_currentHealth <= 0) Death?.Invoke();
+        }
 
-    public float GetPercent()
-    {
-        return _currentHealth / _maxHealth;
-    }
+        public bool IsDead()
+        {
+            return _currentHealth <= 0;
+        }
 
-    public void Revive()
-    {
-        _currentHealth = _maxHealth;
-        OnRevive?.Invoke();
+        public float GetPercent()
+        {
+            return _currentHealth / _maxHealth;
+        }
+
+        public void OnRevive()
+        {
+            _currentHealth = _maxHealth;
+            Revive?.Invoke();
+        }
     }
 }

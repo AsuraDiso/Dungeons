@@ -1,13 +1,13 @@
-using Movements;
+using Dungeons.Game.Movements;
 using UnityEngine;
 
-namespace Enemies.Behaviours
+namespace Dungeons.Game.Enemies.Behaviours
 {
     public class FollowerAI
     {
-        private Transform _ownerTransform;
-        private Transform _leaderTransform;
-        private Movement _movement;
+        private readonly Transform _leaderTransform;
+        private readonly Movement _movement;
+        private readonly Transform _ownerTransform;
 
         public FollowerAI(Transform ownerTransform, Movement movement, Transform leaderTransform)
         {

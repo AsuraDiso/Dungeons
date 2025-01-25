@@ -1,16 +1,11 @@
-﻿using MapGeneration;
+﻿using Dungeons.Game.MapGeneration;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
-    public class RoomLightningFiller : IRoomFiller
+    public class RoomLightningFiller : RoomFiller
     {
-        public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
-        }
-
-        public bool IsValid()
-        {
-            return true;
         }
     }
 }

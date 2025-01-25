@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Services
+namespace Dungeons.Services
 {
     [CreateAssetMenu(menuName = "Config/" + nameof(LevelPreset))]
     public class LevelPreset : ScriptableObject
@@ -11,5 +11,8 @@ namespace Services
         [field: SerializeField] public List<GameObject> DecoratedWallPrefabs { get; private set; }
         [field: SerializeField] public List<GameObject> FloorPrefabs { get; private set; }
         [field: SerializeField] public List<GameObject> DecoratedFloorPrefabs { get; private set; }
+        [field: SerializeField] public List<GameObject> Mobs { get; private set; }
+        [field: SerializeField] public List<GameObject> Bosses { get; private set; }
+        [field: SerializeField] public List<GameObject> Rewads { get; private set; }
     }
 }

@@ -1,17 +1,17 @@
-using Movements;
+using Dungeons.Game.Movements;
 using UnityEngine;
 
-namespace Enemies.Behaviours
+namespace Dungeons.Game.Enemies.Behaviours
 {
     public class WanderAI
     {
-        private Transform _ownerTransform;
-        private Movement _movement;
-        private float _wanderRadius;
-        private float _stayTime;
+        private readonly Movement _movement;
+        private readonly Transform _ownerTransform;
+        private readonly Vector3 _spawnPosition;
+        private readonly float _stayTime;
         private float _stayTimer;
         private Vector3 _targetPosition;
-        private Vector3 _spawnPosition;
+        private readonly float _wanderRadius;
 
         public WanderAI(Transform ownerTransform, Movement movement, float wanderRadius, float stayTime)
         {

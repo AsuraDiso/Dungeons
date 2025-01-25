@@ -1,4 +1,4 @@
-namespace Infrastructure
+namespace Dungeons.Infrastructure
 {
     public static class Locator<TSingleton>
     {

@@ -1,15 +1,14 @@
-using UnityEngine;
 using System.Collections.Generic;
-using Items;
+using Dungeons.Game.Items;
+using UnityEngine;
 
-namespace InventorySystem
+namespace Dungeons.Game.InventorySystem
 {
     public class Inventory : MonoBehaviour
     {
         [SerializeField] private Item _headSerialized;
         [SerializeField] private Item _bodySerialized;
         [SerializeField] private Item _handSerialized;
-        private Dictionary<EquipSlot, Item> _slots = new();
 
         [SerializeField] private List<Item> _inventoryItems = new();
 
@@ -19,6 +18,7 @@ namespace InventorySystem
         [SerializeField] private Transform _rightHandTransform;
         [SerializeField] private Transform _bodyTransform;
         [SerializeField] private Transform _headTransform;
+        private readonly Dictionary<EquipSlot, Item> _slots = new();
 
         private void Awake()
         {

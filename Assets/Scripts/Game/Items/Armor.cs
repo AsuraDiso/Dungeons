@@ -1,4 +1,4 @@
-namespace Items
+namespace Dungeons.Game.Items
 {
     public class Armor : Item
     {

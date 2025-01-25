@@ -1,28 +1,23 @@
-using Combats;
-using InventorySystem;
-using Movements;
-using PlayerSystem;
+using Dungeons.Game.Combats;
+using Dungeons.Game.InventorySystem;
+using Dungeons.Game.Movements;
+using Dungeons.Game.PlayerSystem;
 using UnityEngine;
 
-namespace Enemies
+namespace Dungeons.Game.Enemies
 {
     public abstract class MobAI : MonoBehaviour
     {
-        private Player _player;
-        [SerializeField] protected Health _health;
+        [SerializeField] protected Health.Health _health;
         [SerializeField] protected Combat _combat;
         [SerializeField] protected Movement _movement;
         [SerializeField] protected Inventory _inventory;
 
+        public Player Player { get; set; }
+
         protected bool IsDead()
         {
             return _health.IsDead();
-        }
-
-        public Player Player
-        {
-            get => _player;
-            set => _player = value;
         }
     }
 }

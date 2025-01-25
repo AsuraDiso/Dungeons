@@ -1,27 +1,28 @@
-using System;
-using InventorySystem;
-using Movements;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace Dungeons.Game.PlayerSystem
 {
     public class PlayerAnimator : MonoBehaviour
     {
-        [SerializeField] private Player _player;
         private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Death = Animator.StringToHash("Death");
+        [SerializeField] private Player _player;
+        [SerializeField] private Animator _animator;
 
         private void Awake()
         {
-            _player.Health.OnDeath += OnDeath;
-            // _player.Health.OnHit += OnHit;
+            _player.Health.Death += OnDeath;
+            _player.Combat.Hit += OnHit;
         }
 
         private void OnDeath()
         {
+            _animator.SetTrigger(Death);
         }
 
         public void OnHit()
         {
+            _animator.SetTrigger(Hit);
         }
     }
 }

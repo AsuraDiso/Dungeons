@@ -1,13 +1,13 @@
-using Rooms;
+using Dungeons.Game.Rooms;
 using UnityEngine;
 
-namespace Doors
+namespace Dungeons.Game.Doors
 {
     public class Door : MonoBehaviour
     {
         [SerializeField] private GameObject _door;
-        private Vector2 _direction;
         private Room _connectedRoom;
+        private Vector2 _direction;
         public Room ConnectedRoom { get; set; }
         public Vector2 Direction { get; set; }
 

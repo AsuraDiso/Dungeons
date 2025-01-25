@@ -1,7 +1,7 @@
-﻿using Movements;
+﻿using Dungeons.Game.Movements;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace Dungeons.Game.PlayerSystem
 {
     public class PlayerMovement : Movement
     {

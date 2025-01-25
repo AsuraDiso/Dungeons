@@ -1,22 +1,15 @@
 ﻿using System.Collections.Generic;
-using Doors;
-using Infrastructure;
-using MapGeneration;
-using Services;
+using Dungeons.Game.Doors;
+using Dungeons.Game.MapGeneration;
+using Dungeons.Infrastructure;
+using Dungeons.Services;
 using UnityEngine;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
-    public class RoomWallsAndDoorsFiller : IRoomFiller
+    public class RoomWallsAndDoorsFiller : RoomFiller
     {
-        private readonly LevelSystem _levelSystem;
-
-        public RoomWallsAndDoorsFiller()
-        {
-            _levelSystem = Locator<LevelSystem>.Instance;
-        }
-
-        public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
             List<Vector2> directions = new()
             {
@@ -71,11 +64,6 @@ namespace Rooms
                     }
                 }
             }
-        }
-
-        public bool IsValid()
-        {
-            return true;
         }
 
         private Vector3 GetWallPosition(Vector2 relativePosition)

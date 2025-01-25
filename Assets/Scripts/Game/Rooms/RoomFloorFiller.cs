@@ -1,22 +1,14 @@
-﻿using Infrastructure;
-using MapGeneration;
-using Services;
-using Unity.Mathematics;
+﻿using Dungeons.Game.MapGeneration;
+using Dungeons.Infrastructure;
+using Dungeons.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
-    public class RoomFloorFiller : IRoomFiller
+    public class RoomFloorFiller : RoomFiller
     {
-        private readonly LevelSystem _levelSystem;
-
-        public RoomFloorFiller()
-        {
-            _levelSystem = Locator<LevelSystem>.Instance;
-        }
-
-        public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
             var floor = new GameObject("Floor");
             floor.transform.SetPositionAndRotation(room.transform.position, Quaternion.identity);
@@ -40,11 +32,6 @@ namespace Rooms
                 floorPrefab.transform.SetPositionAndRotation(floor.transform.position + position,
                     floor.transform.rotation);
             }
-        }
-
-        public bool IsValid()
-        {
-            return true;
         }
     }
 }

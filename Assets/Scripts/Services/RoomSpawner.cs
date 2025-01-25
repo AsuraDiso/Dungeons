@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using MapGeneration;
-using Rooms;
+using Dungeons.Game.MapGeneration;
+using Dungeons.Game.Rooms;
 using UnityEngine;
 
-namespace Services
+namespace Dungeons.Services
 {
     public class RoomSpawner
     {
-        private Room _roomPrefab;
-        private Dictionary<Vector2, Room> _rooms = new();
-        private MapGenerator _mapGenerator;
+        private readonly MapGenerator _mapGenerator;
+        private readonly Room _roomPrefab;
+        private readonly Dictionary<Vector2, Room> _rooms = new();
 
         public RoomSpawner(MapGenerator mapGen, Room roomPrefab)
         {

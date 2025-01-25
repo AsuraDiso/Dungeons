@@ -1,13 +1,13 @@
-using Enemies.Behaviours;
+using Dungeons.Game.Enemies.Behaviours;
 using UnityEngine;
 
-namespace Enemies
+namespace Dungeons.Game.Enemies
 {
     public class MageAI : MobAI
     {
-        private WanderAI _wanderAI;
-        private ChaseAndAttackAI _chaseAndAttackAI;
         [SerializeField] private float _followDist;
+        private ChaseAndAttackAI _chaseAndAttackAI;
+        private WanderAI _wanderAI;
 
         private void Start()
         {

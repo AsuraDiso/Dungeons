@@ -1,14 +1,14 @@
-using Enemies.Behaviours;
+using Dungeons.Game.Enemies.Behaviours;
 using UnityEngine;
 
-namespace Enemies
+namespace Dungeons.Game.Enemies
 {
     public class WarriorAI : MobAI
     {
-        private WanderAI _wanderAI;
-        private ChaseAndAttackAndAvoidAI _chaseAndAttackAndAvoidAI;
-        [SerializeField] private Health _minionPrefab;
+        [SerializeField] private Health.Health _minionPrefab;
         [SerializeField] private float _followDist;
+        private ChaseAndAttackAndAvoidAI _chaseAndAttackAndAvoidAI;
+        private WanderAI _wanderAI;
 
         private void Start()
         {

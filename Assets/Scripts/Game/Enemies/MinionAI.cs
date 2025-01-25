@@ -1,19 +1,14 @@
-using Enemies.Behaviours;
+using Dungeons.Game.Enemies.Behaviours;
 using UnityEngine;
 
-namespace Enemies
+namespace Dungeons.Game.Enemies
 {
     public class MinionAI : MobAI
     {
-        private WanderAI _wanderAI;
-        private FollowerAI _followerAI;
-        private ChaseAndAttackAI _chaseAndAttackAI;
         [SerializeField] private Transform _leaderTransform;
-
-        public void SetLeader(Transform leaderTransform)
-        {
-            _leaderTransform = leaderTransform;
-        }
+        private ChaseAndAttackAI _chaseAndAttackAI;
+        private FollowerAI _followerAI;
+        private WanderAI _wanderAI;
 
         private void Start()
         {
@@ -39,6 +34,11 @@ namespace Enemies
                 else
                     _wanderAI.Update();
             }
+        }
+
+        public void SetLeader(Transform leaderTransform)
+        {
+            _leaderTransform = leaderTransform;
         }
     }
 }

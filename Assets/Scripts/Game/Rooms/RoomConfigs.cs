@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
     [CreateAssetMenu(menuName = "Rooms/RoomConfigs")]
     public class RoomConfigs : ScriptableObject

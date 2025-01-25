@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Items
+namespace Dungeons.Game.Items
 {
     public class Hat : Item
     {

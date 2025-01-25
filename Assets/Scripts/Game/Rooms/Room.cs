@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using MapGeneration;
-using Services;
+using Dungeons.Game.MapGeneration;
+using Dungeons.Services;
 using UnityEngine;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
     public static class RoomConstants
     {
@@ -18,8 +18,8 @@ namespace Rooms
     public class Room : MonoBehaviour
     {
         [SerializeField] private RoomConfigs _roomConfigs;
+        private readonly List<RoomFiller> _fillers = new();
         private Camera _currentCamera;
-        private readonly List<IRoomFiller> _fillers = new();
         private RoomData _roomData;
         private RoomSpawner _roomSpawner;
         public Vector2 Position { get; private set; }

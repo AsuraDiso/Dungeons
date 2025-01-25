@@ -1,8 +1,7 @@
-using System;
-using InventorySystem;
+using Dungeons.Game.InventorySystem;
 using UnityEngine;
 
-namespace Items
+namespace Dungeons.Game.Items
 {
     public enum EquipSlot
     {
@@ -14,11 +13,11 @@ namespace Items
 
     public abstract class Item : MonoBehaviour
     {
-        private EquipSlot _equipSlot;
         [SerializeField] private Collider _collider;
 
         [SerializeField] private Vector3 _defaultOverrideEquipPosition = Vector3.zero;
         [SerializeField] private Vector3 _defaultOverrideGroundRotation = new(0, 0, 45);
+        private EquipSlot _equipSlot;
         private bool _isEquipped;
 
         public bool IsEquipped { get; set; }
@@ -26,23 +25,9 @@ namespace Items
         public Quaternion OverrideGroundRotation { get; set; }
         public EquipSlot EquipSlot { get; set; }
 
-        private void Start()
+        private void Awake()
         {
             UnEquip();
-        }
-
-        public virtual void Equip()
-        {
-            _collider.enabled = false;
-            IsEquipped = true;
-            transform.rotation *= OverrideGroundRotation;
-        }
-
-        public virtual void UnEquip()
-        {
-            _collider.enabled = true;
-            IsEquipped = false;
-            transform.rotation = OverrideGroundRotation;
         }
 
         private void Update()
@@ -54,6 +39,20 @@ namespace Items
         {
             var inventory = other.GetComponentInParent<Inventory>();
             if (inventory != null) inventory.EquipItem(this);
+        }
+
+        public void Equip()
+        {
+            _collider.enabled = false;
+            IsEquipped = true;
+            transform.rotation *= OverrideGroundRotation;
+        }
+
+        public void UnEquip()
+        {
+            _collider.enabled = true;
+            IsEquipped = false;
+            transform.rotation = OverrideGroundRotation;
         }
     }
 }

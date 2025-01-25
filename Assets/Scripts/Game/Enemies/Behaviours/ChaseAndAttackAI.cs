@@ -1,17 +1,17 @@
-using Combats;
-using Movements;
-using PlayerSystem;
+using Dungeons.Game.Combats;
+using Dungeons.Game.Movements;
+using Dungeons.Game.PlayerSystem;
 using UnityEngine;
 
-namespace Enemies.Behaviours
+namespace Dungeons.Game.Enemies.Behaviours
 {
     public class ChaseAndAttackAI
     {
-        private Player _player;
-        private Transform _ownerTransform;
-        private Combat _combat;
-        private Movement _movement;
-        private float _followRange;
+        private readonly Combat _combat;
+        private readonly float _followRange;
+        private readonly Movement _movement;
+        private readonly Transform _ownerTransform;
+        private readonly Player _player;
 
         public ChaseAndAttackAI(Transform ownerTransform, Player player, Combat combat, Movement movement,
             float followRange)

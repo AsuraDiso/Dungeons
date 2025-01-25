@@ -1,12 +1,12 @@
-using Enemies.Behaviours;
+using Dungeons.Game.Enemies.Behaviours;
 using UnityEngine;
 
-namespace Enemies
+namespace Dungeons.Game.Enemies
 {
     public class GolemAI : MobAI
     {
-        private WanderAI _wanderAI;
         private ChaseAndAttackAndAvoidAI _chaseAndAttackAndAvoidAI;
+        private WanderAI _wanderAI;
 
         private void Start()
         {

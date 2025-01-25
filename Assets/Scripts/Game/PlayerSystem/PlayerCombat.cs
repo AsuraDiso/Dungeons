@@ -1,22 +1,15 @@
-using PlayerSystem;
-using Combats;
+using System;
+using Dungeons.Game.Combats;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace Dungeons.Game.PlayerSystem
 {
     public class PlayerCombat : Combat
     {
+        public event Action Hit;
         [SerializeField] private Player _player;
 
         private Coroutine _attackCoroutine;
-
-        public void FixedUpdate()
-        {
-            if (!_player?.Controller) return;
-            var attackDirection = _player.Controller.AttackDirection;
-            var isattacking = attackDirection != Vector3.zero;
-            if (isattacking && _attackCoroutine == null) TryAttack(attackDirection);
-        }
 
         public override void Update()
         {
@@ -29,6 +22,14 @@ namespace PlayerSystem
                     Quaternion.LookRotation(attackDirection),
                     Time.fixedDeltaTime * 10f
                 );
+        }
+
+        public void FixedUpdate()
+        {
+            if (!_player?.Controller) return;
+            var attackDirection = _player.Controller.AttackDirection;
+            var isattacking = attackDirection != Vector3.zero;
+            if (isattacking && _attackCoroutine == null) TryAttack(attackDirection);
         }
     }
 }

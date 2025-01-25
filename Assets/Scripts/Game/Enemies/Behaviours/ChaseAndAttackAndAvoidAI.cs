@@ -1,22 +1,22 @@
-using Combats;
-using Movements;
-using PlayerSystem;
+using Dungeons.Game.Combats;
+using Dungeons.Game.Movements;
+using Dungeons.Game.PlayerSystem;
 using UnityEngine;
 
-namespace Enemies.Behaviours
+namespace Dungeons.Game.Enemies.Behaviours
 {
     public class ChaseAndAttackAndAvoidAI
     {
-        private Player _player;
-        private Transform _ownerTransform;
-        private Combat _combat;
-        private Movement _movement;
-        private float _followRange;
+        private readonly float _avoidanceDistance = 5f;
+        private readonly Combat _combat;
+        private readonly float _followRange;
+        private bool _isAboutToAvoid;
 
         private bool _isShouldAvoid;
-        private bool _isAboutToAvoid;
-        private float _avoidanceDistance = 5f;
-        private float _stunDuration = 1.0f;
+        private readonly Movement _movement;
+        private readonly Transform _ownerTransform;
+        private readonly Player _player;
+        private readonly float _stunDuration = 1.0f;
         private float _stunTimer;
 
         public ChaseAndAttackAndAvoidAI(Transform ownerTransform, Player player, Combat combat, Movement movement,

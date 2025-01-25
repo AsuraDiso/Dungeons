@@ -1,7 +1,7 @@
-using System;
+using PlayerSystem;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace Dungeons.Game.PlayerSystem
 {
     public class PlayerController : MonoBehaviour
     {

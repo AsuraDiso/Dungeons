@@ -1,13 +1,11 @@
-﻿using MapGeneration;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using Dungeons.Game.MapGeneration;
 using Random = UnityEngine.Random;
 
-namespace Rooms
+namespace Dungeons.Game.Rooms
 {
-    public class RoomDecorationsFiller : IRoomFiller
+    public class RoomDecorationsFiller : RoomFiller
     {
-        public void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
         {
             var amount = Random.Range(1, 5);
 
@@ -19,11 +17,6 @@ namespace Rooms
                 // decoPrefab.transform.SetPositionAndRotation(room.transform.position+position, Quaternion.Euler(-90, 0, Random.Range(0, 360)));
                 // decoPrefab.transform.localScale = new Vector3(1, 1, 1);
             }
-        }
-
-        public bool IsValid()
-        {
-            return true;
         }
     }
 }

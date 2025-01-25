@@ -1,7 +1,7 @@
-using PlayerSystem;
+using Dungeons.Game.PlayerSystem;
 using UnityEngine;
 
-namespace Services
+namespace Dungeons.Services
 {
     public class PlayerSpawner
     {

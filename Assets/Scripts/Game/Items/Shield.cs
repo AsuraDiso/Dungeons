@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Items
+namespace Dungeons.Game.Items
 {
     public class Shield : Item
     {

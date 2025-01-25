@@ -1,6 +1,7 @@
+using Dungeons.Game.Projectiles;
 using UnityEngine;
 
-namespace Items
+namespace Dungeons.Game.Items
 {
     public enum WeaponType
     {
