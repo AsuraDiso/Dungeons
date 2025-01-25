@@ -974,11 +974,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e108d9d36814581a096d5e67fd5d817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 1436363290772880338}
-  _inventory: {fileID: 1778561471944027941}
-  _combat: {fileID: 301574047092491364}
-  _controller: {fileID: 5469767473992117215}
-  _movement: {fileID: 8743434782235277956}
+  <Health>k__BackingField: {fileID: 1436363290772880338}
+  <Inventory>k__BackingField: {fileID: 1778561471944027941}
+  <Combat>k__BackingField: {fileID: 301574047092491364}
+  <Controller>k__BackingField: {fileID: 5469767473992117215}
+  <Movement>k__BackingField: {fileID: 8743434782235277956}
 --- !u!114 &5469767473992117215
 MonoBehaviour:
   m_ObjectHideFlags: 0
