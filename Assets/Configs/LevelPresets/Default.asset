@@ -12,6 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8c4d97691f49659de478b0e95a5ce4, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  _doorPrefab: {fileID: 0}
-  _wallPrefabs: []
-  _floorTilePrefabs: []
+  <DecorChance>k__BackingField: 0.2
+  <WallPrefabs>k__BackingField:
+  - {fileID: 919132149155446097, guid: 11baa26717ebd3e438a140c7774e88ba, type: 3}
+  <DecoratedWallPrefabs>k__BackingField:
+  - {fileID: 919132149155446097, guid: 68a615dbd047efe45aea202c41f30e1b, type: 3}
+  - {fileID: 919132149155446097, guid: ef5954b2f11e96945a74b566a25b60bc, type: 3}
+  - {fileID: 919132149155446097, guid: d1d699065ffcfb14a85ae08bef32dc57, type: 3}
+  <FloorPrefabs>k__BackingField:
+  - {fileID: 919132149155446097, guid: 854fa7374ff90e545934b0357257ebab, type: 3}
+  <DecoratedFloorPrefabs>k__BackingField:
+  - {fileID: 919132149155446097, guid: 5f68d396f46ed7b44ab5b8256823e01b, type: 3}
+  - {fileID: 919132149155446097, guid: b0cc4d19422faeb458e086f16989d8f4, type: 3}
+  - {fileID: 919132149155446097, guid: e327625d453701e46966b45e408aae81, type: 3}
+  <Mobs>k__BackingField:
+  - {fileID: 5223893282433743711, guid: b9464b659bd5b2547b2cbfd3605abb17, type: 3}
+  - {fileID: 5797060674136976938, guid: 0d8c26171dfc96248bc1091e316473a6, type: 3}
+  - {fileID: 8205968923980488732, guid: 1ef2d843796ec1447bf62de228267251, type: 3}
+  <Bosses>k__BackingField: []
+  <Rewads>k__BackingField: []
