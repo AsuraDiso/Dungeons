@@ -9,7 +9,7 @@ namespace Dungeons.Game.Rooms
 {
     public class RoomMobsFiller : RoomFiller
     {
-        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData)
         {
             float halfWidth = RoomConstants.RoomWidth * .5f, halfDepth = RoomConstants.RoomDepth * .5f;
             var player = Locator<Player>.Instance;

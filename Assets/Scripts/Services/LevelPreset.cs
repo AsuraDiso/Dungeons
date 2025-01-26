@@ -6,6 +6,8 @@ namespace Dungeons.Services
     [CreateAssetMenu(menuName = "Config/" + nameof(LevelPreset))]
     public class LevelPreset : ScriptableObject
     {
+        [field: SerializeField] public GameObject DoorPrefab { get; set; }
+        [field: SerializeField] public GameObject ExitDoorPrefab { get; set; }
         [field: SerializeField] public float DecorChance { get; private set; }
         [field: SerializeField] public List<GameObject> WallPrefabs { get; private set; }
         [field: SerializeField] public List<GameObject> DecoratedWallPrefabs { get; private set; }

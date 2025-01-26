@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Dungeons.Services
 {
+
     public class ConfigService : MonoBehaviour
     {
         [field: SerializeField] public string Seed { get; private set; }
@@ -19,7 +20,7 @@ namespace Dungeons.Services
 
         private void InitSeed()
         {
-            var seed = Seed is null ? (int)(DateTime.UtcNow.Ticks % int.MaxValue) : GetNumericSeed(Seed);
+            var seed = Seed is null or "" ? (int)(DateTime.UtcNow.Ticks % int.MaxValue) : GetNumericSeed(Seed);
             Random.InitState(seed);
         }
 
@@ -35,7 +36,7 @@ namespace Dungeons.Services
             return hash;
         }
 
-        public LevelPreset GetRandomLevelPreset()
+        public LevelPreset GetRandomLevelPreset(int level = 1)
         {
             return PresetLevels[Random.Range(0, PresetLevels.Count)];
         }

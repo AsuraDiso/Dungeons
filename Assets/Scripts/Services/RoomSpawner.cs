@@ -19,6 +19,7 @@ namespace Dungeons.Services
 
         public void SpawnRooms()
         {
+            ClearRooms();
             var rooms = _mapGenerator.GetRoomData();
 
             foreach (var roomData in rooms) InstantiateRoom(roomData);
@@ -42,14 +43,11 @@ namespace Dungeons.Services
         }
 
 
-        public Room GetRoomByCoords(Vector2 coords)
-        {
-            return _rooms.ContainsKey(coords) ? _rooms[coords] : null;
-        }
-
+        public Room GetRoomByCoords(Vector2 coords) => _rooms.ContainsKey(coords) ? _rooms[coords] : null;
         private void ClearRooms()
         {
-            if (_rooms != null) _rooms.Clear();
+            foreach (var room in _rooms) Object.Destroy(room.Value.gameObject);
+            _rooms?.Clear();
         }
     }
 }

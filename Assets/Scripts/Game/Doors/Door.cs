@@ -11,7 +11,7 @@ namespace Dungeons.Game.Doors
         public Room ConnectedRoom { get; set; }
         public Vector2 Direction { get; set; }
 
-        public void TryToEnterRoom(Collider other)
+        public virtual void TryToEnterRoom(Collider other)
         {
             var entity = other.transform.parent.gameObject;
 

@@ -17,7 +17,6 @@ namespace Dungeons.Game.Rooms
 
     public class Room : MonoBehaviour
     {
-        [SerializeField] private RoomConfigs _roomConfigs;
         private readonly List<RoomFiller> _fillers = new();
         private Camera _currentCamera;
         private RoomData _roomData;
@@ -52,16 +51,16 @@ namespace Dungeons.Game.Rooms
 
             foreach (var filler in _fillers)
                 if (filler.IsValid())
-                    filler.Fill(this, roomData, _roomConfigs);
+                    filler.Fill(this, roomData);
         }
 
         public void FillWithEnemies()
         {
-            if (Type == RoomType.Regular)
+            if (Type == RoomType.Regular || Type == RoomType.Boss)
             {
                 var filter = new RoomMobsFiller();
                 _fillers.Add(filter);
-                filter.Fill(this, _roomData, _roomConfigs);
+                filter.Fill(this, _roomData);
             }
         }
 

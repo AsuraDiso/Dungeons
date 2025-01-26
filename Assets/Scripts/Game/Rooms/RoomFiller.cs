@@ -13,7 +13,7 @@ namespace Dungeons.Game.Rooms
             _levelSystem = Locator<LevelSystem>.Instance;
         }
         
-        public abstract void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs);
+        public abstract void Fill(Room room, RoomData roomData);
         public virtual bool IsValid() => true;
     }
 }

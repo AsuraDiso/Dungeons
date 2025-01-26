@@ -14,5 +14,9 @@ namespace Dungeons.Game.PlayerSystem
             _input = new PlayerInput();
             _input.Player.Enable();
         }
+        private void OnDestroy()
+        {
+            _input.Player.Disable();
+        }
     }
 }

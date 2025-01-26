@@ -5,7 +5,7 @@ namespace Dungeons.Game.Rooms
 {
     public class RoomDecorationsFiller : RoomFiller
     {
-        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData)
         {
             var amount = Random.Range(1, 5);
 

@@ -4,7 +4,7 @@ namespace Dungeons.Game.Rooms
 {
     public class RoomLightningFiller : RoomFiller
     {
-        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData)
         {
         }
     }

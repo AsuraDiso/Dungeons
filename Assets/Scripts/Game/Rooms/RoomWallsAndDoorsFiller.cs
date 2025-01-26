@@ -9,8 +9,13 @@ namespace Dungeons.Game.Rooms
 {
     public class RoomWallsAndDoorsFiller : RoomFiller
     {
-        public override void Fill(Room room, RoomData roomData, RoomConfigs roomConfigs)
+        public override void Fill(Room room, RoomData roomData)
         {
+            if (room.Type == RoomType.Boss)
+            {
+                var stairsObject = Object.Instantiate(_levelSystem.CurrentLevelPreset.ExitDoorPrefab, room.transform);
+                stairsObject.transform.SetPositionAndRotation(room.transform.position, Quaternion.identity);
+            }
             List<Vector2> directions = new()
             {
                 new Vector2(-1, 0),
@@ -18,7 +23,14 @@ namespace Dungeons.Game.Rooms
                 new Vector2(0, 1),
                 new Vector2(0, -1)
             };
-
+            var walls = new GameObject("Walls");
+            walls.transform.SetPositionAndRotation(room.transform.position, Quaternion.identity);
+            walls.transform.SetParent(room.transform);
+            
+            var doors = new GameObject("Doors");
+            doors.transform.SetPositionAndRotation(room.transform.position, Quaternion.identity);
+            doors.transform.SetParent(room.transform);
+            
             foreach (var direction in directions)
             {
                 var wallLength = Mathf.Approximately(direction.x, 0) ? 20 : 12;
@@ -39,8 +51,8 @@ namespace Dungeons.Game.Rooms
                     var doesHasDoor = roomData.NeighborsRelativePositions.Contains(direction);
                     if (isDoorPlace && doesHasDoor)
                     {
-                        var doorObject = Object.Instantiate(roomConfigs.DoorPrefab, room.transform);
-                        doorObject.transform.SetPositionAndRotation(room.transform.position + position, rotation);
+                        var doorObject = Object.Instantiate(_levelSystem.CurrentLevelPreset.DoorPrefab, doors.transform);
+                        doorObject.transform.SetPositionAndRotation(doors.transform.position + position, rotation);
 
                         var door = doorObject.GetComponent<Door>();
                         if (door != null)
@@ -58,8 +70,8 @@ namespace Dungeons.Game.Rooms
                             : _levelSystem.CurrentLevelPreset.WallPrefabs;
                         var wallPassage = Object.Instantiate(
                             wallPrefabs
-                                [Random.Range(0, wallPrefabs.Count)], room.transform);
-                        wallPassage.transform.SetPositionAndRotation(room.transform.position + currentPosition,
+                                [Random.Range(0, wallPrefabs.Count)], walls.transform);
+                        wallPassage.transform.SetPositionAndRotation(walls.transform.position + currentPosition,
                             rotation);
                     }
                 }

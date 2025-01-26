@@ -16,5 +16,7 @@ namespace Dungeons.Game.PlayerSystem
         {
             name = nameof(Player);
         }
+
+        public void MoveToZeros() => transform.position = Vector3.zero;
     }
 }

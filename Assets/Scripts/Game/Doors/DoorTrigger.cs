@@ -9,8 +9,7 @@ namespace Dungeons.Game.Doors
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.name);
-            if (_door != null) _door.TryToEnterRoom(other);
+            _door?.TryToEnterRoom(other);
         }
     }
 }
