@@ -1,4 +1,3 @@
-using PlayerSystem;
 using UnityEngine;
 
 namespace Dungeons.Game.PlayerSystem

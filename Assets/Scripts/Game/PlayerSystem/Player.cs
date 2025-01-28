@@ -1,4 +1,3 @@
-using System;
 using Dungeons.Game.InventorySystem;
 using UnityEngine;
 

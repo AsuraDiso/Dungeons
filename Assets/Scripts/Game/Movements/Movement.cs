@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Dungeons.Game.Movements
 {
     public class Movement : MonoBehaviour
     {
+        public event Action Move;
+        public event Action SpeedChange;
+        public event Action Spawn;
         [SerializeField] protected Rigidbody _rigidbody;
-        [SerializeField] protected Animator _animator;
         [SerializeField] protected float _speed;
         [SerializeField] protected float _idleThreshold;
         [SerializeField] protected float _stopDistance = 0.5f;
@@ -21,27 +24,26 @@ namespace Dungeons.Game.Movements
             set
             {
                 _speed = value;
-                _animator.SetFloat("RunSpeed", _speed);
+                SpeedChange?.Invoke();
             }
         }
 
         private void Start()
         {
-            _animator.SetTrigger("Spawn");
+            Spawn?.Invoke();
             Speed = _speed;
         }
 
         public void Update()
         {
             var isMoving = _moveDirection != Vector3.zero;
-            _animator.SetBool("IsRunning", isMoving);
-
+            Move?.Invoke();
             if (isMoving)
             {
                 _idleTimer = 0f;
                 _isFunnyIdle = false;
-                _animator.SetBool("FunnyIdle", _isFunnyIdle);
-
+                //_animator.SetBool("FunnyIdle", _isFunnyIdle);
+                
                 var targetRotation = Quaternion.LookRotation(_moveDirection);
                 _rigidbody.rotation = Quaternion.Slerp(_rigidbody.rotation, targetRotation, Time.deltaTime * 10f);
             }
@@ -51,7 +53,7 @@ namespace Dungeons.Game.Movements
                 if (_idleTimer >= _idleThreshold)
                 {
                     _isFunnyIdle = !_isFunnyIdle;
-                    _animator.SetBool("FunnyIdle", _isFunnyIdle);
+                    //_animator.SetBool("FunnyIdle", _isFunnyIdle);
                     _idleTimer = 0;
                 }
             }
@@ -102,7 +104,7 @@ namespace Dungeons.Game.Movements
         {
             _targetPosition = Vector3.zero;
             _moveDirection = Vector3.zero;
-            _animator.SetBool("IsRunning", false);
+            Move?.Invoke();
         }
     }
 }

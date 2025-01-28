@@ -2,7 +2,6 @@ using Dungeons.Game.MapGeneration;
 using Dungeons.Game.PlayerSystem;
 using Dungeons.Game.Rooms;
 using Dungeons.Services;
-using PlayerSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +16,7 @@ namespace Dungeons.Infrastructure
         {
             InitLocator();
             DontDestroyOnLoad(gameObject);
-            SceneManager.LoadScene("Scenes/Game");
+            SceneManager.LoadScene("Scenes/MainMenu");
         }
 
         private void InitLocator()

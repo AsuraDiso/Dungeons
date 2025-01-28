@@ -1,7 +1,6 @@
 using Dungeons.Game.MapGeneration;
 using Dungeons.Game.PlayerSystem;
 using Dungeons.Infrastructure;
-using PlayerSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +26,11 @@ namespace Dungeons.Services
             CurrentLevelPreset = _configs.GetRandomLevelPreset(CurrentLevel);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log($"Current level: {CurrentLevel}");
+        }
+
+        public void StartGame()
+        {
+            SceneManager.LoadScene("Scenes/Game");
         }
     }
 }
