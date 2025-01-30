@@ -16,7 +16,7 @@ namespace Dungeons.Infrastructure
         {
             InitLocator();
             DontDestroyOnLoad(gameObject);
-            SceneManager.LoadScene("Scenes/Game");
+            SceneManager.LoadScene("Scenes/MainMenu");
         }
 
         private void InitLocator()
