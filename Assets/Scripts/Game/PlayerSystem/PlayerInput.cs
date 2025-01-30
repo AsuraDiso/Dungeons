@@ -46,6 +46,15 @@ namespace Dungeons.Game.PlayerSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f776bcd-fba7-4b7b-bfb6-32097e708447"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,17 @@ namespace Dungeons.Game.PlayerSystem
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3289d061-5f1c-4dd7-88fb-0fd33c686075"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -168,6 +188,7 @@ namespace Dungeons.Game.PlayerSystem
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+            m_Player_Tab = m_Player.FindAction("Tab", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -236,12 +257,14 @@ namespace Dungeons.Game.PlayerSystem
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Attack;
+        private readonly InputAction m_Player_Tab;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
             public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
+            public InputAction @Tab => m_Wrapper.m_Player_Tab;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -257,6 +280,9 @@ namespace Dungeons.Game.PlayerSystem
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Tab.started += instance.OnTab;
+                @Tab.performed += instance.OnTab;
+                @Tab.canceled += instance.OnTab;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -267,6 +293,9 @@ namespace Dungeons.Game.PlayerSystem
                 @Attack.started -= instance.OnAttack;
                 @Attack.performed -= instance.OnAttack;
                 @Attack.canceled -= instance.OnAttack;
+                @Tab.started -= instance.OnTab;
+                @Tab.performed -= instance.OnTab;
+                @Tab.canceled -= instance.OnTab;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -288,6 +317,7 @@ namespace Dungeons.Game.PlayerSystem
         {
             void OnMove(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
+            void OnTab(InputAction.CallbackContext context);
         }
     }
 }

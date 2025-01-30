@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Dungeons.Game.MapGeneration;
+using Dungeons.Infrastructure;
 using Dungeons.Services;
 using UnityEngine;
 
@@ -17,6 +19,8 @@ namespace Dungeons.Game.Rooms
 
     public class Room : MonoBehaviour
     {
+        public event Action Enter;
+        public event Action Exit;
         private readonly List<RoomFiller> _fillers = new();
         private Camera _currentCamera;
         private RoomData _roomData;
@@ -27,11 +31,7 @@ namespace Dungeons.Game.Rooms
         private void Awake()
         {
             _currentCamera = Camera.main;
-        }
-
-        public void SetRoomSpawner(RoomSpawner roomSpawner)
-        {
-            _roomSpawner = roomSpawner;
+            _roomSpawner = Locator<RoomSpawner>.Instance;
         }
 
         public void Instantiate(RoomData roomData)
@@ -75,15 +75,16 @@ namespace Dungeons.Game.Rooms
                     var nextRoom = _roomSpawner.GetRoomByCoords(nextRoomCoords);
                     if (nextRoom != null)
                     {
-                        Exit();
-                        nextRoom.Enter(other, direction);
+                        ExitRoom();
+                        nextRoom.EnterRoom(other, direction);
                     }
                 }
             }
         }
 
-        public void Enter(GameObject other = default, Vector2 direction = default)
+        public void EnterRoom(GameObject other = default, Vector2 direction = default)
         {
+            Enter?.Invoke();
             gameObject.SetActive(true);
             if (other != null)
                 other.transform.position = transform.position + new Vector3(-direction.x * RoomConstants.PlayerOffsetX,
@@ -92,8 +93,9 @@ namespace Dungeons.Game.Rooms
                                                 new Vector3(0, RoomConstants.CameraHeight, RoomConstants.CameraDepth);
         }
 
-        public void Exit()
+        public void ExitRoom()
         {
+            Exit?.Invoke();
             gameObject.SetActive(false);
         }
     }

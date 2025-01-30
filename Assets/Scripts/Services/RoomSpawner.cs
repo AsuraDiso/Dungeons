@@ -24,7 +24,7 @@ namespace Dungeons.Services
 
             foreach (var roomData in rooms) InstantiateRoom(roomData);
 
-            _rooms[new Vector2(0, 0)].Enter();
+            _rooms[new Vector2(0, 0)].EnterRoom();
         }
 
         private void InstantiateRoom(RoomData roomData)
@@ -32,7 +32,6 @@ namespace Dungeons.Services
             var roomPosition = new Vector3(roomData.Position.x * RoomConstants.RoomWidth, 0,
                 roomData.Position.y * RoomConstants.RoomDepth);
             var room = Object.Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
-            room.SetRoomSpawner(this);
             room.Instantiate(roomData);
             _rooms.Add(roomData.Position, room);
         }
