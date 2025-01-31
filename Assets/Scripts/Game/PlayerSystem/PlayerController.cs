@@ -9,6 +9,7 @@ namespace Dungeons.Game.PlayerSystem
         public Vector3 MovementDirection => _input.Player.Move.ReadValue<Vector3>();
         public Vector3 AttackDirection => _input.Player.Attack.ReadValue<Vector3>();
         public bool TabPressed => _input.Player.Tab.ReadValue<float>() > 0;
+        public bool EscTriggered => _input.Player.Esc.triggered;
 
         private void Awake()
         {

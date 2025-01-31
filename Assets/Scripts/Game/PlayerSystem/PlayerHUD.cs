@@ -10,18 +10,28 @@ namespace Dungeons.Game.PlayerSystem
     {
         [SerializeField] private UIHealthBar _healthBar;
         [SerializeField] private UIMiniMap _miniMap;
+        [SerializeField] private UIPause _pause;
         private Player _player;
 
         private void Awake()
         {
             _player = Locator<Player>.Instance;
             _player.Health.HealthDelta += OnHealthDelta;
+            _pause.gameObject.SetActive(false);
             OnHealthDelta();
         }
 
         private void OnHealthDelta()
         {
             _healthBar.OnChangeHealth(_player.Health.GetPercent());
+        }
+        
+        private void Update()
+        {
+            if (_player.Controller.EscTriggered)
+            {
+                _pause.gameObject.SetActive(!_pause.gameObject.activeSelf);
+            }
         }
     }
 }

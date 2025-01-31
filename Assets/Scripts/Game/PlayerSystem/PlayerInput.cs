@@ -55,6 +55,15 @@ namespace Dungeons.Game.PlayerSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""19c80091-a4b8-4318-9064-10be9395e86b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,17 @@ namespace Dungeons.Game.PlayerSystem
                     ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""597adfe5-ceb7-43f3-8d9e-4916ff89f74d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -189,6 +209,7 @@ namespace Dungeons.Game.PlayerSystem
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_Tab = m_Player.FindAction("Tab", throwIfNotFound: true);
+            m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -258,6 +279,7 @@ namespace Dungeons.Game.PlayerSystem
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_Tab;
+        private readonly InputAction m_Player_Esc;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
@@ -265,6 +287,7 @@ namespace Dungeons.Game.PlayerSystem
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @Tab => m_Wrapper.m_Player_Tab;
+            public InputAction @Esc => m_Wrapper.m_Player_Esc;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -283,6 +306,9 @@ namespace Dungeons.Game.PlayerSystem
                 @Tab.started += instance.OnTab;
                 @Tab.performed += instance.OnTab;
                 @Tab.canceled += instance.OnTab;
+                @Esc.started += instance.OnEsc;
+                @Esc.performed += instance.OnEsc;
+                @Esc.canceled += instance.OnEsc;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -296,6 +322,9 @@ namespace Dungeons.Game.PlayerSystem
                 @Tab.started -= instance.OnTab;
                 @Tab.performed -= instance.OnTab;
                 @Tab.canceled -= instance.OnTab;
+                @Esc.started -= instance.OnEsc;
+                @Esc.performed -= instance.OnEsc;
+                @Esc.canceled -= instance.OnEsc;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -318,6 +347,7 @@ namespace Dungeons.Game.PlayerSystem
             void OnMove(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnTab(InputAction.CallbackContext context);
+            void OnEsc(InputAction.CallbackContext context);
         }
     }
 }

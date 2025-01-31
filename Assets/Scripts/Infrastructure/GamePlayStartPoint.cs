@@ -30,6 +30,7 @@ namespace Dungeons.Infrastructure
         {
             Locator<MapGenerator>.Instance = null;
             Locator<RoomSpawner>.Instance = null;
+            Locator<PlayerSpawner>.Instance = null;
             Locator<Player>.Instance = null;
         }
     }
